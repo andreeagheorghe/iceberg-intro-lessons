@@ -43,11 +43,15 @@ services:
       - MINIO_DOMAIN=storage
       - MINIO_REGION_NAME=us-east-1
       - MINIO_REGION=us-east-1
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=password
     networks:
       iceberg:
     ports:
       - 9001:9001
       - 9000:9000
+    volumes:
+      - ./warehouse:/data
     command: ["server", "/data", "--console-address", ":9001"]
   # Dremio
   dremio:
